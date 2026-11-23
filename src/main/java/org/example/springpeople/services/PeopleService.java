@@ -4,6 +4,7 @@ import org.example.springpeople.dto.PeopleRequest;
 import org.example.springpeople.dto.PeopleResponse;
 import org.example.springpeople.entity.People;
 import org.example.springpeople.exceptions.DuplicateResourceException;
+import org.example.springpeople.exceptions.ResourceNotFoundException;
 import org.example.springpeople.repository.PeopleRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class PeopleService {
     public PeopleResponse updatePerson(Long id, PeopleRequest request){
         People person = findPersonOrThrow(id);
 
-        boolean emeailUsedByAnotherPerson = PeopleRepository.existsByEmailAndIdNot(request.email(), id);
+        boolean emailUsedByAnotherStudent = PeopleRepository.existsByEmailAndIdNot(request.email(), id);
 
         if (emailUsedByAnotherStudent) {
             throw new DuplicateResourceException(
@@ -70,7 +71,7 @@ public class PeopleService {
                         "Person not found with ID: " + id
                 ));
 }
-private  PeopleResponse mapToResponse(People person){
+private PeopleResponse mapToResponse(People person){
     return new PeopleResponse(
             person.getId(),
             person.getName(),
