@@ -1,8 +1,6 @@
 package org.example.springpeople.dto;
 
-import jakarta.validation.constraints.Email;
-
-public record StudentResponse(
+public record PeopleResponse(
         long id,
         String Name,
         String Email
