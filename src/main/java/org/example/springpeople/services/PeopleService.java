@@ -17,7 +17,7 @@ public class PeopleService {
     }
 
     //CREATE
-    public  PeopleResponse createPerson(PeopleRequest request){
+    public static PeopleResponse createPerson(PeopleRequest request){
         People person = new People();
         person.setName(request.Name());
         person.setEmail(request.email());
@@ -45,7 +45,7 @@ public class PeopleService {
 
         if (emailUsedByAnotherStudent) {
             throw new DuplicateResourceException(
-                    "Another student is already using this email"
+                    "Another person is already using this email"
             );
         }
 
